@@ -24,4 +24,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate wave 32 strategy file
-        run: python -m json.tool .synergy/strategy/wave-32-read-only-ci-validation.v1.json >/dev/null
+        run: python3 -m json.tool .synergy/strategy/wave-32-read-only-ci-validation.v1.json >/dev/null
