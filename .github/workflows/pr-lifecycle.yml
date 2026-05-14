@@ -1,0 +1,22 @@
+name: pr-lifecycle
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+  actions: read
+
+jobs:
+  lifecycle:
+    uses: nagdkl/orgmesh-actions/.github/workflows/reusable-pr-lifecycle-check.yml@main
+    with:
+      required-target-branch: main
