@@ -1,0 +1,74 @@
+{
+  "$id": "https://synergy.mesh/schemas/agent.event.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "agent.event.v1",
+  "type": "object",
+  "required": [
+    "event_id",
+    "schema_version",
+    "type",
+    "source",
+    "timestamp",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "type": {
+      "type": "string",
+      "minLength": 3,
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
+      "examples": ["agent.started", "task.completed", "review.requested"]
+    },
+    "source": {
+      "type": "object",
+      "required": ["agent_id"],
+      "properties": {
+        "agent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "agent_role": {
+          "type": "string"
+        },
+        "repo": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "correlation_id": {
+      "type": "string"
+    },
+    "causation_id": {
+      "type": "string"
+    },
+    "idempotency_key": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
