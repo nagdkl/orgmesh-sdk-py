@@ -1,0 +1,23 @@
+{
+  "schema": "synergy.external-deps/v1",
+  "services": [
+    {
+      "name": "github",
+      "type": "https",
+      "url": "https://github.com",
+      "required": true,
+      "expected_status": 200,
+      "timeout_seconds": 10
+    },
+    {
+      "name": "package-checks",
+      "type": "manual",
+      "required": true
+    },
+    {
+      "name": "ci-readiness",
+      "type": "manual",
+      "required": true
+    }
+  ]
+}
