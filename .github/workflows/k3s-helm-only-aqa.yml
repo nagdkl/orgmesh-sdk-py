@@ -1,0 +1,27 @@
+name: k3s-helm-only-aqa
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report-only-aqa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run report-only k3s Helm AQA
+        uses: nagdkl/orgmesh-actions/actions/k3s-helm-only-aqa@main
+
+      - name: Upload AQA reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k3s-helm-only-aqa-reports
+          path: .status/reports/*.json
